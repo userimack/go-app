@@ -1,0 +1,12 @@
+FROM golang:alpine AS build_base
+
+RUN apk add --no-cache make
+
+WORKDIR /app
+
+COPY . .
+
+RUN make build-linux
+
+EXPOSE 8080
+CMD ["/app/out/go-app"]
